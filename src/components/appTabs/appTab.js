@@ -1,50 +1,51 @@
-import { observerFactory } from 'lemejs'
-import { repeat } from '../../helpers'
-import { tabEventBus } from './eventEmitter'
+import { observerFactory } from "lemejs"
+import { repeat } from "../../helpers"
+import { tabEventBus } from "./eventEmitter"
 
-import { appTabHead, appTabItem, appTabBody, appTabContent } from './'
+import { appTabHead, appTabItem, appTabBody, appTabContent } from "./"
 
 export const appTab = ({ props }) => {
-  const state = observerFactory({ ...props })
-  const children = () => ({
-    appTab,
-    appTabHead,
-    appTabItem,
-    appTabBody,
-    appTabContent
-  })
+	const state = observerFactory({ ...props })
+  
+	const children = () => ({
+		appTab,
+		appTabHead,
+		appTabItem,
+		appTabBody,
+		appTabContent,
+	})
 
-  const hooks = () => ({
-    beforeOnInit
-  })
+	const hooks = () => ({
+		beforeOnInit,
+	})
 
-  const beforeOnInit = () => {
-    tabEventBus.on('on-set-tab', toggleTabs)
-  }
+	const beforeOnInit = () => {
+		tabEventBus.on("on-set-tab", toggleTabs)
+	}
 
-  const toggleTabs = (data) => {
-    const { tabs } = state.get()
-    const newTabs = tabs.map((tab) =>
-      tab.id === data.tabId ? { ...tab, show: true } : { ...tab, show: false }
-    )
-    state.set({ tabs: [...newTabs] })
-  }
+	const toggleTabs = (data) => {
+		const { tabs } = state.get()
+		const newTabs = tabs.map((tab) =>
+			tab.id === data.tabId ? { ...tab, show: true } : { ...tab, show: false }
+		)
+		state.set({ tabs: [...newTabs] })
+	}
 
-  return {
-    template,
-    styles,
-    hooks,
-    children,
-    state
-  }
+	return {
+		template,
+		styles,
+		hooks,
+		children,
+		state,
+	}
 }
 
 const template = ({ state, toProp, html }) => {
-  return html`
+	return html`
 		<app-tab-head>
 			${repeat(
 				state.tabs,
-				(tab) => html` <app-tab-item ${toProp('tab', tab)}>
+				(tab) => html` <app-tab-item ${toProp("tab", tab)}>
 					${tab.title}
 				</app-tab-item>`
 			)}
@@ -57,7 +58,7 @@ const template = ({ state, toProp, html }) => {
 								${tab.content}
 							</app-tab-content>
 					  `
-					: ''
+					: ""
 			)}
 		</app-tab-body>
 	`
