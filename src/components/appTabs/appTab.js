@@ -40,16 +40,15 @@ export const appTab = ({ props }) => {
   }
 }
 
-const template = ({ state, toProp, html }) => {
+const template = ({ state, props, toProp, html }) => {
+  console.log(state)
   return html`
 		<app-tab-head>
 			${repeat(
 				state.tabs,
 				(tab) => html` 
-				<app-tab-item 
-				${toProp('tab', tab)}
-				>
-				 ${tab.title}
+				<app-tab-item ${toProp('tab', tab)}>
+					${tab.title}
 				</app-tab-item>`
 			)}
 		</app-tab-head>
@@ -58,6 +57,15 @@ const template = ({ state, toProp, html }) => {
 				tab.show
 					? html`
 							<app-tab-content data-tab-id=${tab.id}>
+								<div class="ctx-pin-link">
+									<app-link 
+										${toProp('theme', tab.link.theme)}
+									>
+										<a href="${props.to}" class="ctx-link">
+											${tab.link.title}
+										</a>
+									</app-link>
+								</div>
 								${tab.content}
 							</app-tab-content>
 					  `
@@ -76,5 +84,23 @@ const styles = ({ ctx, css }) => css`
 		width: 100%;
 		height: 222px;
 		background: #f1f1f1;
+		position:relative;
 	}
+
+  .ctx-pin-link {
+    display: flex;
+    position:absolute;
+    top:0;
+    right:0;
+  }
+	
+	.ctx-pin-link a {
+    display:flex;
+    width:100%;
+    padding:1rem;
+    border-radius:5px;
+    border: 1px #f00 solid;
+    background:#fff;
+    color: #f00
+  }
 `

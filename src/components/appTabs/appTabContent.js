@@ -19,10 +19,5 @@ ${ctx},
   width:100%;
 }  
 
-.ctx-content * {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding:1rem;
-}
+
 `

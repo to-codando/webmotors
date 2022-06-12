@@ -1,5 +1,6 @@
 import { observerFactory } from 'lemejs'
 import { appTab } from '../appTabs'
+import { appLink } from '../appLink'
 
 export const appBuyCar = () => {
   const state = observerFactory({
@@ -10,7 +11,8 @@ export const appBuyCar = () => {
         content: 'Tab 1 content',
         icon: 'directions_car',
         show: true,
-        callAction: { title: 'Vender meu carro', link: '#/sale-car' }
+        callAction: { title: 'Vender meu carro', link: '#/sale-car' },
+        link: { to: '#/address-1', title: 'Vender meu carro', theme: 'red' }
       },
       {
         id: 2,
@@ -18,13 +20,15 @@ export const appBuyCar = () => {
         content: 'Tab 2 content',
         icon: 'two_wheeler',
         show: false,
-        callAction: { title: 'Vender minha moto', link: '#/sale-moto' }
+        callAction: { title: 'Vender minha moto', link: '#/sale-moto' },
+        link: { to: '#/address-2', title: 'Vender minha moto', theme: 'red' }
       }
     ]
   })
 
   const children = () => ({
-    appTab
+    appTab,
+    appLink
   })
 
   return {
