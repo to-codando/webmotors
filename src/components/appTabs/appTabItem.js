@@ -20,6 +20,9 @@ const template = ({ props, html }) => html`
   <div 
     class="ctx-wrapper ${props.tab.show && 'ctx-active'}"
   >
+    <span class="material-symbols-rounded">
+      ${props.tab.icon}
+    </span>
     <slot></slot>
   </div>
 `
@@ -43,7 +46,5 @@ const styles = ({ ctx, props, css }) => {
     border-bottom: 5px #f00 solid;
     background:#fff
   }
-
-  
   `
 }
