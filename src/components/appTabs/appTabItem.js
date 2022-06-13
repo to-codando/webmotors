@@ -12,16 +12,16 @@ export const appTabItem = ({ props }) => {
 
 const onTabItemEvent = ({ on, appElement }, props) => {
   on('click', appElement, () => {
-    tabEventBus.emit('on-set-tab', { tabId: +props.tab.id, show: true })
+    tabEventBus.emit('on-set-tab', { tabId: +props.id, show: true })
   })
 }
 
 const template = ({ props, html }) => html`
   <div 
-    class="ctx-wrapper ${props.tab.show && 'ctx-active'}"
+    class="ctx-wrapper ${props.show && 'ctx-active'}"
   >
     <span class="material-symbols-rounded">
-      ${props.tab.icon}
+      ${props.icon}
     </span>
     <slot></slot>
   </div>

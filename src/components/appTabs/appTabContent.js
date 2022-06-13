@@ -1,6 +1,5 @@
-import { observerFactory } from 'lemejs'
 
-export const appTabContent = ({ props }) => {
+export const appTabContent = () => {
   return { template, styles }
 }
 
@@ -18,6 +17,4 @@ ${ctx},
   align-items:flex-start;
   width:100%;
 }  
-
-
 `
