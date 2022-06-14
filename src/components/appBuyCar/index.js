@@ -32,6 +32,11 @@ export const appBuyCar = () => {
         show: false,
         link: { to: '#/', title: 'Vender minha moto' }
       }
+    ],
+    brands: [
+      { id: 1, title: 'Chevrolet' },
+      { id: 2, title: 'WolksVagem' },
+      { id: 3, title: 'Renault' }
     ]
   })
 
@@ -97,7 +102,9 @@ const template = ({ state, html, toProp }) => html`
                 ${tab.link.title}
               </app-link>
               
-              <app-form></app-form>
+              <app-form
+                ${toProp('brands', state.brands)}
+              ></app-form>
 
             </app-tab-content>
             `
@@ -128,7 +135,7 @@ const styles = ({ ctx, css }) => css`
     display:flex;
     width:100%;
     padding:.7rem 1rem;
-		margin-top:8px;
+		margin-top:4px;
     border-radius:5px;
     border: 1px #f00 solid;
     background:#fff;

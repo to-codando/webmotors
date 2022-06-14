@@ -12,9 +12,9 @@ const styles = ({ ctx, css }) => css`
   ${ctx} { 
     display:flex;
     width:100%;
-    height:60px;
+    height:45px;
     justify-content: center;
     align-items:center;
-    padding:0 0 1rem 0;
+    padding:0 0 .5rem 0;
    }
 `

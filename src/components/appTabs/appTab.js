@@ -18,7 +18,7 @@ const styles = ({ ctx, css }) => css`
 		align-items: flex-start;
 		flex-direction: column;
 		width: 100%;
-		height: 222px;
+		height: 235px;
 		background: #f1f1f1;
 		position: relative;
 	}

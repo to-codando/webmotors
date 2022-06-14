@@ -37,7 +37,7 @@ const styles = ({ ctx, props, css }) => {
   }
   
   .ctx-wrapper {
-    padding: 1rem;
+    padding: .8rem;
     border-bottom: 5px #ccc solid;
     cursor: pointer;
   }

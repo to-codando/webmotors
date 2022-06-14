@@ -14,7 +14,8 @@ const styles = ({ ctx, css }) => css`
     flex-wrap: wrap;
     width:100%;
     height:calc(100vh - 75px);
-    padding:2rem;
+    overflow-y: visible;
+    padding:.5rem;
     background:#fff;
     border: 1px #f00 solid
   }  
