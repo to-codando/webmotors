@@ -15,5 +15,6 @@ ${ctx},
   justify-content: flex-start;
   align-items:flex-start;
   width:100%;
+  background: #ebebeb
 }  
 `

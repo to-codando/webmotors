@@ -70,7 +70,7 @@ const styles = ({ ctx, props, css }) => {
 			color: #ccc;
 		}
 		.ctx-icon-end:hover {
-			color: #f00;
+			color: #f51344;
 		}
 
 		.ctx-input {

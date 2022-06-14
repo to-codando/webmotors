@@ -18,7 +18,7 @@ export const appBuyCar = () => {
     tabs: [
       {
         id: 1,
-        title: 'Tab 1',
+        title: 'Carros',
         content: 'Tab 1 content',
         icon: 'directions_car',
         show: true,
@@ -26,7 +26,7 @@ export const appBuyCar = () => {
       },
       {
         id: 2,
-        title: 'Tab 2',
+        title: 'Motos',
         content: 'Tab 2 content',
         icon: 'two_wheeler',
         show: false,
@@ -83,6 +83,7 @@ const template = ({ state, html, toProp }) => html`
           <app-tab-item 
             ${toProp('id', tab.id)}
             ${toProp('show', tab.show)}
+            ${toProp('icon', tab.icon)}
           > 
             ${tab.title} 
           </app-tab-item>
@@ -137,8 +138,8 @@ const styles = ({ ctx, css }) => css`
     padding:.7rem 1rem;
 		margin-top:4px;
     border-radius:5px;
-    border: 1px #f00 solid;
+    border: 1px #f51344 solid;
     background:#fff;
-    color: #f00;
+    color: #f51344;
   }  
 `

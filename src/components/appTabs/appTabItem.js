@@ -20,10 +20,12 @@ const template = ({ props, html }) => html`
   <div 
     class="ctx-wrapper ${props.show && 'ctx-active'}"
   >
-    <span class="material-symbols-rounded">
+    <span class="material-symbols-rounded ctx-icon">
       ${props.icon}
     </span>
-    <slot></slot>
+    <span class="ctx-text">
+      <slot></slot>
+    </span>
   </div>
 `
 
@@ -43,8 +45,17 @@ const styles = ({ ctx, props, css }) => {
   }
   
   .ctx-active {
-    border-bottom: 5px #f00 solid;
+    border-bottom: 5px #f51344 solid;
     background:#fff
+  }
+
+  .ctx-text {
+    margin-left:5px;
+    font-weight:bold
+  }
+
+  .ctx-active > .ctx-icon {
+    color: #f51344
   }
   `
 }

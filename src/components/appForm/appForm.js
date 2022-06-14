@@ -1,4 +1,4 @@
-import { appCheckBox, appAutoComplete, appComboBox } from './'
+import { appCheckBox, appAutoComplete, appComboBox, appButton } from './'
 import { appIcon } from '../appIcon'
 import { observerFactory } from 'lemejs'
 
@@ -7,7 +7,8 @@ export const appForm = ({ props }) => {
     appCheckBox,
     appAutoComplete,
     appComboBox,
-    appIcon
+    appIcon,
+    appButton
   })
   return { template, styles, children }
 }
@@ -79,8 +80,36 @@ const template = ({ html, props, toProp }) => {
           ${toProp('data', props.brands)}
         ></app-combo-box>     
       </div>
+    </div> 
+    <div class="ctx-grid ctx-col-25-25-50 ctx-gap ctx-space-top">
+      
+      <app-button
+        ${toProp('styles', ['text-red', 'align-left'])}
+      >
+        <span class="material-symbols-rounded">
+        navigate_next
+        </span>
+        Busca avançada
+      </app-button>
 
-    </div>   
+      <app-button
+      ${toProp('styles', ['text-grey', 'align-right'])}
+      >
+        <span class="material-symbols-rounded">
+          backspace
+        </span>
+          Limpar formulário
+      </app-button>
+
+      <app-button
+      ${toProp('styles', ['button-red'])}
+      >
+        <span class="material-symbols-rounded">
+          filter_alt
+        </span>
+        Ver Ofertas
+      </app-button>
+    </div>  
   `
 }
 
@@ -119,6 +148,9 @@ ${ctx} {
 }
 .ctx-col-100 {
   grid-template-columns: 1fr;  
+}
+.ctx-col-25-25-50 {
+  grid-template-columns: .25fr .25fr .5fr;  
 }
 
 

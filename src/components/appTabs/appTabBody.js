@@ -17,6 +17,6 @@ const styles = ({ ctx, css }) => css`
     overflow-y: visible;
     padding:.5rem;
     background:#fff;
-    border: 1px #f00 solid
+    border: 1px #f51344 solid
   }  
 `
