@@ -1,6 +1,5 @@
 import { appCheckBox, appAutoComplete, appComboBox, appButton } from './'
 import { appIcon } from '../appIcon'
-import { observerFactory } from 'lemejs'
 
 export const appForm = ({ props }) => {
   const children = () => ({
@@ -10,7 +9,12 @@ export const appForm = ({ props }) => {
     appIcon,
     appButton
   })
-  return { template, styles, children }
+
+  return {
+    template,
+    styles,
+    children
+  }
 }
 
 const template = ({ html, props, toProp }) => {
@@ -45,6 +49,8 @@ const template = ({ html, props, toProp }) => {
         <app-combo-box 
           ${toProp('label', 'Raio')}
           ${toProp('data', props.brands)}
+          ${toProp('key', ['ID', 'Name'])}
+          ${toProp('event', { listen: 'on-change-radio' })}
         ></app-combo-box>
 
       </div>
@@ -53,10 +59,14 @@ const template = ({ html, props, toProp }) => {
         <app-combo-box 
           ${toProp('label', 'Marca')}
           ${toProp('data', props.brands)}
+          ${toProp('key', ['ID', 'Name'])}
+          ${toProp('event', { listen: 'on-change-make' })}
         ></app-combo-box>
         <app-combo-box 
           ${toProp('label', 'Modelo')}
-          ${toProp('data', props.brands)}
+          ${toProp('data', props.models)}
+          ${toProp('key', ['ID', 'Name'])}
+          ${toProp('event', { listen: 'on-change-model' })}
         ></app-combo-box>
       </div>
 
@@ -67,10 +77,14 @@ const template = ({ html, props, toProp }) => {
         <app-combo-box 
           ${toProp('label', 'Ano')}
           ${toProp('data', props.brands)}
+          ${toProp('key', ['ID', 'Name'])}
+          ${toProp('event', { listen: 'on-change-year' })}
         ></app-combo-box>
         <app-combo-box 
           ${toProp('label', 'Preço')}
           ${toProp('data', props.brands)}
+          ${toProp('key', ['ID', 'Name'])}
+          ${toProp('event', { listen: 'on-change-price' })}
         ></app-combo-box>      
       </div>
 
@@ -78,6 +92,8 @@ const template = ({ html, props, toProp }) => {
         <app-combo-box 
           ${toProp('label', 'Versão')}
           ${toProp('data', props.brands)}
+          ${toProp('key', ['ID', 'Name'])}
+          ${toProp('event', { listen: 'on-change-version' })}
         ></app-combo-box>     
       </div>
     </div> 

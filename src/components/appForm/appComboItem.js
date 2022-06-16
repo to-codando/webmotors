@@ -11,7 +11,10 @@ export const appComboItem = ({ props }) => {
 
   const onSelect = ({ on, appElement }) => {
     on('click', appElement, () => {
-      formEventBus.emit('on-select-combo-item', { ...props })
+      const emitEvent = props && props.event && props.event.emit
+        ? props.event.emit
+        : 'ON-UNDEFINED-EVENT'
+      formEventBus.emit(emitEvent, { ...props.data })
     })
   }
 

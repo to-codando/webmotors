@@ -4,7 +4,7 @@
 	"description": "",
 	"main": "./src/main.js",
 	"precise-watcher": {
-	"src": [
+		"src": [
 			{
 				"pattern": [
 					"./src/**/*"
@@ -34,7 +34,7 @@
 		]
 	},
 	"standard": {
-		"ignore":[
+		"ignore": [
 			"/node_modules",
 			"/dist",
 			"/android",
@@ -43,7 +43,7 @@
 		]
 	},
 	"scripts": {
-		"lint":"pnpm standard --fix",
+		"lint": "pnpm standard --fix",
 		"copy": "shx cp ./index.html ./dist/index.html",
 		"watch": "pnpm precise-watcher",
 		"dev": "cross-env NODE_ENV=development node ./esbuild.config.js",
@@ -64,6 +64,10 @@
 		"standard": "^17.0.0"
 	},
 	"dependencies": {
-		"lemejs": "^6.1.0"
+		"axios": "^0.27.2",
+		"cross-fetch": "^3.1.5",
+		"lemejs": "^6.1.0",
+		"miragejs": "^0.1.45",
+		"node-fetch": "^3.2.6"
 	}
 }

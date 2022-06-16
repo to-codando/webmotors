@@ -13,7 +13,11 @@ import {
 import { appLink } from '../appLink'
 import { appForm } from '../appForm'
 
+import { apiFactory } from '../../services/http'
+
 export const appBuyCar = () => {
+  const api = apiFactory()
+
   const state = observerFactory({
     tabs: [
       {
@@ -33,11 +37,8 @@ export const appBuyCar = () => {
         link: { to: '#/', title: 'Vender minha moto' }
       }
     ],
-    brands: [
-      { id: 1, title: 'Chevrolet' },
-      { id: 2, title: 'WolksVagem' },
-      { id: 3, title: 'Renault' }
-    ]
+    brands: [],
+    models: []
   })
 
   const children = () => ({
@@ -56,6 +57,13 @@ export const appBuyCar = () => {
 
   const beforeOnInit = () => {
     tabEventBus.on('on-set-tab', toggleTabs)
+    getMake()
+  }
+
+  const getMake = async () => {
+    const { data: brands } = await api.getMakes()
+    const models = await api.getModels(1)
+    state.set({ ...state.get(), brands, models })
   }
 
   const toggleTabs = (data) => {
@@ -105,6 +113,7 @@ const template = ({ state, html, toProp }) => html`
               
               <app-form
                 ${toProp('brands', state.brands)}
+                ${toProp('models', state.models)}
               ></app-form>
 
             </app-tab-content>

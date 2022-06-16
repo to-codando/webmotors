@@ -1,12 +1,11 @@
 import { observerFactory } from 'lemejs'
 import { repeat } from '../../helpers'
-
-import { appComboItem } from './appComboItem'
 import { formEventBus } from './eventDrive'
+import { appComboItem } from './appComboItem'
 
 export const appComboBox = ({ props }) => {
   const state = observerFactory({
-    title: '',
+    value: '',
     id: null
   })
 
@@ -20,14 +19,18 @@ export const appComboBox = ({ props }) => {
   })
 
   const beforeOnInit = () => {
-    formEventBus.on('on-select-combo-item', (data) => {
-      const dataItem = props.data.find(item => item.id === data.id)
-      state.set({ ...dataItem })
-    })
+    bindEventListener(props)
   }
 
   const afterOnRender = (dom) => {
     onToggle(dom)
+  }
+
+  const bindEventListener = (props) => {
+    if (!props || !props.event || !props.event.listen) return
+    formEventBus.on(props.event.listen, (data) => {
+      state.set({ ...data })
+    })
   }
 
   const onToggle = ({ on, queryOnce }) => {
@@ -41,22 +44,34 @@ export const appComboBox = ({ props }) => {
   return { template, styles, hooks, state, children }
 }
 
-const template = ({ state, props, toProp, html }) => html`
+const template = ({ state, props, toProp, html }) => {
+  const dispatch = props && props.event && props.event.listen
+    ? props.event.listen
+    : 'ON-UNDEFINED-EVENT'
+
+  return html`
   <label class="ctx-label">
 
     <span class="ctx-title">
-      ${props.label}: <input type="text" class="ctx-input" value=${state.title}>
+      ${props.label}: <input type="text" class="ctx-input" value=${state.value}>
     </span>
 
     <ul class="ctx-combo">
       ${
-        repeat(props.data, (item) => html`
+        repeat(props.data, (item) => {
+          const id = item[props.key[0]]
+          const value = item[props.key[1]]
+          return html`
           <li>
-            <app-combo-item ${toProp('id', +item.id)}>
-              ${item.title}
+            <app-combo-item 
+            ${toProp('data', { id, value })}
+            ${toProp('event', { emit: dispatch })}
+            >
+              ${value}
             </app-combo-item>
           </li>
-        `)
+        `
+        })
       }
     </ul>
 
@@ -65,6 +80,7 @@ const template = ({ state, props, toProp, html }) => html`
     </span>
   </label>
 `
+}
 const styles = ({ ctx, css }) => css`
 ${ctx} {
   display:flex;
