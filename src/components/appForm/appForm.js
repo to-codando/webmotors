@@ -45,11 +45,10 @@ const template = ({ html, props, toProp }) => {
           ${toProp('grouped', true)}
         >
         </app-auto-complete>
-
         <app-combo-box 
           ${toProp('label', 'Raio')}
-          ${toProp('data', props.brands)}
-          ${toProp('key', ['ID', 'Name'])}
+          ${toProp('data', props.range)}
+          ${toProp('key', ['ID', 'Value'])}
           ${toProp('event', { listen: 'on-change-radio' })}
         ></app-combo-box>
 
@@ -60,30 +59,29 @@ const template = ({ html, props, toProp }) => {
           ${toProp('label', 'Marca')}
           ${toProp('data', props.brands)}
           ${toProp('key', ['ID', 'Name'])}
-          ${toProp('event', { listen: 'on-change-make' })}
+          ${toProp('event', { listen: 'on-change-make', emit: 'on-setted-make' })}
         ></app-combo-box>
         <app-combo-box 
           ${toProp('label', 'Modelo')}
           ${toProp('data', props.models)}
           ${toProp('key', ['ID', 'Name'])}
-          ${toProp('event', { listen: 'on-change-model' })}
+          ${toProp('event', { listen: 'on-change-model', emit: 'on-setted-model' })}
         ></app-combo-box>
       </div>
-
     </div>
 
     <div class="ctx-grid ctx-col-50 ctx-gap ctx-space-top">
       <div class="ctx-grid ctx-col-50 ctx-gap">
         <app-combo-box 
           ${toProp('label', 'Ano')}
-          ${toProp('data', props.brands)}
-          ${toProp('key', ['ID', 'Name'])}
+          ${toProp('data', props.fabrication)}
+          ${toProp('key', ['ID', 'Year'])}
           ${toProp('event', { listen: 'on-change-year' })}
         ></app-combo-box>
         <app-combo-box 
           ${toProp('label', 'Preço')}
-          ${toProp('data', props.brands)}
-          ${toProp('key', ['ID', 'Name'])}
+          ${toProp('data', props.prices)}
+          ${toProp('key', ['ID', 'Value'])}
           ${toProp('event', { listen: 'on-change-price' })}
         ></app-combo-box>      
       </div>
@@ -91,9 +89,9 @@ const template = ({ html, props, toProp }) => {
       <div class="ctx-grid ctx-col-100">
         <app-combo-box 
           ${toProp('label', 'Versão')}
-          ${toProp('data', props.brands)}
+          ${toProp('data', props.versions)}
           ${toProp('key', ['ID', 'Name'])}
-          ${toProp('event', { listen: 'on-change-version' })}
+          ${toProp('event', { listen: 'on-change-version', emit: 'on-setted-version' })}
         ></app-combo-box>     
       </div>
     </div> 

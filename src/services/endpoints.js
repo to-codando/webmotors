@@ -2,5 +2,7 @@ export const endpoints = {
   make: 'make',
   model: 'model',
   version: 'version',
-  vehicle: 'vehicle'
+  fabrication: 'fabrication',
+  prices: 'prices',
+  range: 'range'
 }

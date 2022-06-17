@@ -4,9 +4,12 @@ import { formEventBus } from './eventDrive'
 import { appComboItem } from './appComboItem'
 
 export const appComboBox = ({ props }) => {
+  const selected = props.data.find(item => item.selected)
+  const [id, value] = props.key
+
   const state = observerFactory({
-    value: '',
-    id: null
+    id: id && selected ? selected[id] : '',
+    value: value && selected ? selected[value] : ''
   })
 
   const children = () => ({
@@ -30,6 +33,8 @@ export const appComboBox = ({ props }) => {
     if (!props || !props.event || !props.event.listen) return
     formEventBus.on(props.event.listen, (data) => {
       state.set({ ...data })
+      if (!props || !props.event || !props.event.emit) return
+      formEventBus.emit(props.event.emit, { ...data })
     })
   }
 
@@ -53,7 +58,7 @@ const template = ({ state, props, toProp, html }) => {
   <label class="ctx-label">
 
     <span class="ctx-title">
-      ${props.label}: <input type="text" class="ctx-input" value=${state.value}>
+      ${props.label}: <input type="text" class="ctx-input" value="${state.value}">
     </span>
 
     <ul class="ctx-combo">
